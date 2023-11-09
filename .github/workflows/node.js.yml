@@ -24,6 +24,7 @@ jobs:
     - name: Install Snapcraft
       uses: samuelmeuli/action-snapcraft@v2
     - run: export SNAP_DESTRUCTIVE_MODE="true"
+    - run: export SNAPCRAFT_BUILD_ENVIRONMENT=host
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
