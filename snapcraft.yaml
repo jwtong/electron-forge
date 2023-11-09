@@ -1,0 +1,40 @@
+name: tester
+version: '2.0.0'
+summary: A little description for the app.
+description: |
+ You know what? This app is amazing! It does all the things
+ for you. Some say it keeps you young, maybe even happy.
+
+grade: stable
+confinement: classic
+
+parts:
+  tester:
+    plugin: dump
+    source: my-new-app.deb
+    source-type: deb
+    after:
+      - desktop-gtk3
+    stage-packages:
+      - libasound2
+      - libnotify4
+      - libnspr4
+      - libnss3
+      - libpcre3
+      - libpulse0
+      - libxss1
+      - libxtst6
+  electron-launch:
+    plugin: dump
+    source: files/
+    prepare: |
+      chmod +x bin/electron-launch
+
+apps:
+  myApp:
+    command: bin/electron-launch $SNAP/usr/lib/myApp/myApp
+    desktop: usr/share/applications/myApp.desktop
+    # Correct the TMPDIR path for Chromium Framework/Electron to ensure
+    # libappindicator has readable resources.
+    environment:
+      TMPDIR: $XDG_RUNTIME_DIR
