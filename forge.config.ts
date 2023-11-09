@@ -12,15 +12,15 @@ const config: ForgeConfig = {
     // new MakerZIP({}, ['darwin']),
     // new MakerRpm({}),
     //TODO: change to ubuntu
-    new MakerDeb(
-      {
-        options: {
-          bin: 'my-new-app.app',
-        },
-      },
-      ['darwin']
-    ),
-    // new MakerSnap({}, ['darwin']),
+    // new MakerDeb(
+    //   {
+    //     options: {
+    //       bin: 'my-new-app.app',
+    //     },
+    //   },
+    //   ['darwin']
+    // ),
+    new MakerSnap({}, ['linux']),
   ],
   plugins: [
     new VitePlugin({
